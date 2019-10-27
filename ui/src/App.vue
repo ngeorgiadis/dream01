@@ -1,32 +1,37 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+	<div id="app" class="md-app md-layout">
+		<md-toolbar>
+			<div class="md-title">dream01</div>
+		</md-toolbar>
+		<md-content class="md-size-100">
+			<router-view />
+			<player></player>
+		</md-content>
+	</div>
 </template>
 
+<script>
+import Player from "./components/Player.vue";
+
+export default {
+	components: {
+		Player
+	}
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@font-face {
+	font-family: "strange";
+	src: url("./assets/fonts/Benguiat-Bold.ttf");
 }
 
-#nav {
-  padding: 30px;
+@font-face {
+	font-family: "mrrobot";
+	src: url("./assets/fonts/mr-robot.ttf");
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.md-title {
+	font-family: "mrrobot";
 }
 </style>
