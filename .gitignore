@@ -20,5 +20,7 @@ yarn-error.log*
 *.sln
 *.sw?
 
-settings.cfg
+logs/
 dist/
+sdata/
+settings.cfg
