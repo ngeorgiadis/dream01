@@ -34,7 +34,7 @@ func GetRouter(s *storage.Storage) *mux.Router {
 
 	r.HandleFunc("/ws", wsHandler)
 
-	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./ui/dist"))))
+	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("../../ui/dist"))))
 	//r.PathPrefix("/public/").Handler(http.StripPrefix("/public/", http.FileServer(http.Dir("./front/public"))))
 
 	return r

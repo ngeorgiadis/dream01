@@ -13,10 +13,8 @@ import (
 
 // Message ...
 type Message struct {
-	ClientID    string             `json:"clientId"`
-	Record      xlsreader.XLSRow   `json:"record"`
-	Records     []xlsreader.XLSRow `json:"records"`
-	MessageType string             `json:"messageType"`
+	ClientID    string `json:"clientId"`
+	MessageType string `json:"messageType"`
 }
 
 var broadcast = make(chan Message)

@@ -12,6 +12,7 @@ import (
 	"dream01/cmd/server/handlers"
 
 	"dream01/internal/config"
+	"dream01/internal/intlog"
 	"dream01/internal/lumberjack"
 	"dream01/internal/storage"
 )
