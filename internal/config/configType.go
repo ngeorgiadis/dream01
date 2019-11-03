@@ -3,5 +3,6 @@ package config
 // Config is the app config type
 //
 type Config struct {
-	Port int `toml:"port"`
+	Port   int    `toml:"port"`
+	APIKey string `toml:"apiKey"`
 }

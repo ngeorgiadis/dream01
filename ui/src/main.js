@@ -8,6 +8,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./assets/fonts/mr-robot.ttf";
+import "./assets/1.png";
 
 Vue.use(VueMaterial);
 

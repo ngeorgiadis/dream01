@@ -1,21 +1,16 @@
 <template>
 	<div id="app">
-		<md-app md-waterfall md-mode="fixed" md-tag="div">
-			<md-app-toolbar class="md-theme-extra md-primary">
-				<div class="main-toolbar md-title">dream01</div>
-			</md-app-toolbar>
+		<md-toolbar class="md-theme-extra md-primary">
+			<div class="main-toolbar md-title">dream01</div>
+		</md-toolbar>
 
-			<md-app-content class="main-content">
-				<router-view></router-view>
-			</md-app-content>
+		<md-content class="main-content">
+			<router-view></router-view>
+		</md-content>
 
-			<!-- <md-app-toolbar class="player-bar md-primary md-theme-footer">
-				<div class="  md-title">dream01</div>
-			</md-app-toolbar> -->
-			<md-app-content class="footer md-theme-footer md-accent">
-				<radio-player></radio-player>
-			</md-app-content>
-		</md-app>
+		<md-content class="footer md-theme-footer md-accent">
+			<radio-player></radio-player>
+		</md-content>
 	</div>
 </template>
 
@@ -74,9 +69,11 @@ export default {
 
 //@import "~vue-material/dist/theme/all";
 
+#app,
 .md-app {
 	height: 100vh;
-	//border: 1px solid rgba(#000, 0.12);
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 }
 
 .md-drawer {
@@ -100,18 +97,7 @@ export default {
 	font-family: "strange";
 }
 
-.md-app-scroller {
-	margin-bottom: 64px !important;
-}
-
-.footer {
-	height: 64px;
-
-	bottom: 0;
-	left: 0;
-	right: 0;
-
-	position: fixed;
-	// z-index: 100;
+.main-content {
+	overflow: auto;
 }
 </style>

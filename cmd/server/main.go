@@ -14,11 +14,13 @@ import (
 	"dream01/internal/config"
 	"dream01/internal/intlog"
 	"dream01/internal/lumberjack"
+	"dream01/internal/shoutcast"
 	"dream01/internal/storage"
 )
 
 var appConfig *config.Config
 var stor *storage.Storage
+var sc *shoutcast.APIClient
 
 func init() {
 
@@ -38,13 +40,15 @@ func init() {
 	stor = storage.New(storage.Settings{
 		Path: "sdata",
 	})
+
+	sc = shoutcast.New(appConfig.APIKey)
 }
 
 func main() {
 
 	go handlers.HandleMessages()
 
-	r := handlers.GetRouter(stor)
+	r := handlers.GetRouter(stor, sc)
 
 	server := http.Server{
 		Addr:    fmt.Sprintf("0.0.0.0:%v", appConfig.Port),
