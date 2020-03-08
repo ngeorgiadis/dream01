@@ -1,17 +1,17 @@
 <template>
 	<div>
-		<md-button
+		<v-btn
 			@click="tooglePlay"
 			class="md-icon-button md-theme-footer md-primary"
 		>
-			<md-icon>{{ playerIcon }}</md-icon>
-		</md-button>
-		<md-button class="md-icon-button md-theme-footer md-primary">
-			<md-icon>volume_down</md-icon>
-		</md-button>
-		<md-button class="md-icon-button md-theme-footer md-primary">
-			<md-icon>volume_up</md-icon>
-		</md-button>
+			<v-icon>{{ playerIcon }}</v-icon>
+		</v-btn>
+		<v-btn class="md-icon-button md-theme-footer md-primary">
+			<v-icon>volume_down</v-icon>
+		</v-btn>
+		<v-btn class="md-icon-button md-theme-footer md-primary">
+			<v-icon>volume_up</v-icon>
+		</v-btn>
 		<audio id="player" :src="''"></audio>
 	</div>
 </template>
@@ -24,21 +24,21 @@ export default {
 		return {
 			player: {},
 			playerStatus: "paused",
-			playerIcon: "play_arrow"
+			playerIcon: "play_arrow",
 		};
 	},
 
 	props: {
 		source: {
 			type: String,
-			default: "http://dream01.gr:8000/stream"
-		}
+			default: "http://dream01.gr:8000/stream",
+		},
 	},
 
 	created() {},
 
 	computed: {
-		...mapGetters(["getPlayerStatus", "getPlayerSource"])
+		...mapGetters(["getPlayerStatus", "getPlayerSource"]),
 	},
 
 	methods: {
@@ -63,7 +63,7 @@ export default {
 				player.pause();
 				this.setPlayerStatus("paused");
 			}
-		}
+		},
 	},
 
 	watch: {
@@ -76,21 +76,16 @@ export default {
 			player.src = url.href;
 			player.load();
 			player.play().then(
-				res => {
-					console.log(res);
-				},
-				err => {
-					console.log(err);
-
+				() => {},
+				() => {
 					player.src = url.href + ";";
 					player.load();
 					player.play();
 				}
 			);
-		}
-	}
+		},
+	},
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

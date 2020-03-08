@@ -40,3 +40,17 @@ created by net/http.(*Server).Serve
 2019-11-03T14:49:10.055Z [INFO] starting subscriber service at address: [ 0.0.0.0:5000 ]
 2019-11-03T15:19:57.052Z [INFO] starting subscriber service at address: [ 0.0.0.0:5000 ]
 2019-11-03T15:30:23.961Z [INFO] starting subscriber service at address: [ 0.0.0.0:5000 ]
+2019-11-03T18:09:17.141Z [INFO] starting subscriber service at address: [ 0.0.0.0:5000 ]
+2019-11-21T20:51:21.8Z [INFO] starting subscriber service at address: [ 0.0.0.0:5000 ]
+2019-11-23T17:16:06.858Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2019-11-23T17:50:55.401Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2019-11-24T07:41:10.037Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2019-12-02T10:24:27.493Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2019-12-02T10:29:13.241Z [ERROR] open ../../ui/dist/index.html: The system cannot find the path specified.
+2019-12-02T10:29:19.622Z [ERROR] open ../../ui/dist/index.html: The system cannot find the path specified.
+2019-12-02T10:35:03.075Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2020-03-02T18:24:39.086Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2020-03-07T17:15:05.785Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2020-03-08T06:55:31.207Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2020-03-08T10:57:50.915Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2020-03-08T11:05:42.036Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]

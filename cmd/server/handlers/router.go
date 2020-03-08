@@ -25,6 +25,7 @@ func GetRouter(s *storage.Storage, sc *shoutcast.APIClient) *mux.Router {
 	// main handlers
 	r.HandleFunc("/top", getTop500)
 	r.HandleFunc("/source/{id}", getStreamSourceByID)
+	r.HandleFunc("/fav", getFavourites)
 
 	r.HandleFunc("/getrecords", getRecordsHandler)
 	r.HandleFunc("/upload", uploadHandler).Methods("POST")

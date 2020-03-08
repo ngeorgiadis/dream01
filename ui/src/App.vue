@@ -1,17 +1,34 @@
 <template>
-	<div id="app">
-		<md-toolbar class="md-theme-extra md-primary">
-			<div class="main-toolbar md-title">dream01</div>
-		</md-toolbar>
+	<v-app>
+		<div id="main">
+			<v-app-bar height="70px" dark app class="main-toolbar">
+				<router-link class="no-background" to="/">
+					<img
+						class="logo"
+						src="./assets/logo-small-clean.png"
+						alt=""
+					/>
+				</router-link>
 
-		<md-content class="main-content">
-			<router-view></router-view>
-		</md-content>
+				<v-toolbar>
+					<div>dream01</div>
+					<v-spacer></v-spacer>
 
-		<md-content class="footer md-theme-footer md-accent">
-			<radio-player></radio-player>
-		</md-content>
-	</div>
+					<v-btn to="/discover" icon>
+						<v-icon>mdi-magnify</v-icon>
+					</v-btn>
+				</v-toolbar>
+			</v-app-bar>
+
+			<v-content class="main-content">
+				<router-view></router-view>
+			</v-content>
+
+			<v-footer fixed dark class="footer">
+				<radio-player></radio-player>
+			</v-footer>
+		</div>
+	</v-app>
 </template>
 
 <script>
@@ -19,20 +36,20 @@ import RadioPlayer from "./components/Player.vue";
 
 export default {
 	components: {
-		RadioPlayer
+		RadioPlayer,
 	},
 
 	data() {
 		return {
-			menuVisible: false
+			menuVisible: false,
 		};
 	},
 
 	methods: {
 		toggleMenu() {
 			this.menuVisible = !this.menuVisible;
-		}
-	}
+		},
+	},
 };
 </script>
 
@@ -47,44 +64,6 @@ export default {
 	src: url("./assets/fonts/mr-robot.ttf");
 }
 
-@import "~vue-material/dist/theme/engine";
-@include md-register-theme(
-	"extra",
-	(
-		primary: md-get-palette-color(blue, 900),
-		accent: md-get-palette-color(red, A200)
-	)
-);
-@import "~vue-material/dist/components/MdToolbar/theme";
-
-@include md-register-theme(
-	"footer",
-	(
-		primary: md-get-palette-color(white, 900),
-		accent: md-get-palette-color(red, 900)
-	)
-);
-@import "~vue-material/dist/components/MdContent/theme";
-@import "~vue-material/dist/components/MdButton/theme";
-
-//@import "~vue-material/dist/theme/all";
-
-#app,
-.md-app {
-	height: 100vh;
-	display: grid;
-	grid-template-rows: auto 1fr auto;
-}
-
-.md-drawer {
-	width: 230px;
-	max-width: calc(100vw - 125px);
-}
-
-.logo img {
-	height: 40px;
-}
-
 .router-link-active {
 	background-color: #eee;
 }
@@ -93,11 +72,26 @@ export default {
 	font-family: "mrrobot";
 }
 
+.main-toolbar div {
+	font-size: 34px;
+	font-weight: normal;
+	color: #eeeeee;
+}
+
 .player-bar {
 	font-family: "strange";
 }
 
 .main-content {
 	overflow: auto;
+	margin-bottom: 100px;
+}
+
+.logo {
+	margin-top: -30px;
+}
+
+.no-background {
+	background-color: unset;
 }
 </style>
