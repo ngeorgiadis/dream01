@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
 import axios from "axios";
 
 const state = {
 	playerStatus: "paused",
 	source: "http://dream01.gr:8000/stream",
+	currentStation: {},
 };
 
 const getters = {
@@ -14,6 +14,8 @@ const getters = {
 	getPlayerSource: state => {
 		return state.source;
 	},
+
+	getCurrentStation: state => state.currentStation,
 };
 
 const mutations = {
@@ -23,6 +25,10 @@ const mutations = {
 
 	setPlayerSource: (state, payload) => {
 		state.source = payload;
+	},
+
+	setCurrentStation: (state, payload) => {
+		state.currentStation = payload;
 	},
 };
 
@@ -35,12 +41,15 @@ const actions = {
 		commit("setPlayerSource", payload);
 	},
 
-	tuneStationByID: ({ dispatch }, payload) => {
-		//http://yp.shoutcast.com
+	setCurrentStation: ({ commit }, payload) => {
+		commit("setCurrentStation", payload);
+	},
 
-		var url = `/source/${payload.id}`;
-		axios.get(url, { crossdomain: true }).then(res => {
-			dispatch("setPlayerSource", res.data);
+	tuneStation: ({ dispatch }, station) => {
+		var url = `/source/${station.id}`;
+		axios.get(url).then(res => {
+			dispatch("setCurrentStation", station);
+			dispatch("setPlayerSource", res.data[0]);
 		});
 	},
 };

@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<div class="stations">
-			<v-card v-for="r in radios" :key="r.id" @click="tune(r.id)">
+			<v-card v-for="r in getStations" :key="r.id" @click="tune(r)">
 				<v-card-title
 					:class="
 						selectedStation == r.id
@@ -34,46 +34,36 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
 	name: "home",
 	components: {},
 	data() {
-		return {
-			selectedStation: -1,
-			tuneBaseURL: "",
-			radios: [],
-		};
+		return {};
 	},
 
 	created() {
-		axios.get("/top").then(res => {
-			this.tuneBaseURL = res.data.tune_in.base;
+		this.getTop500();
+	},
 
-			this.radios = res.data.stations
-				.sort((a, b) => {
-					return a.lc > b.lc;
-				})
-				.slice(0, 20);
-		});
+	computed: {
+		...mapGetters(["getStations", "getCurrentStation"]),
+
+		selectedStation() {
+			return this.getCurrentStation.id;
+		},
 	},
 
 	methods: {
-		...mapActions(["tuneStationByID"]),
+		...mapActions(["getTop500", "tuneStation"]),
 
 		getLogo(r) {
 			return r.logo.trim();
 		},
 
-		tune(id) {
-			this.selectedStation = id;
-
-			this.tuneStationByID({
-				base: this.tuneBaseURL,
-				id: id,
-			});
+		tune(r) {
+			this.tuneStation(r);
 		},
 	},
 

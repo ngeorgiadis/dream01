@@ -79,18 +79,20 @@ func getStreamSourceByID(w http.ResponseWriter, r *http.Request) {
 
 	lines := strings.Split(string(b), "\n")
 
+	sources := []string{}
+
 	for _, l := range lines {
+
 		l = strings.TrimSpace(l)
-
-		if strings.Index(l, "File1") > -1 {
+		if strings.Index(l, "File") > -1 {
 			i := strings.Index(l, "=")
-
 			stream := fmt.Sprintf("%v", l[i+1:])
+			sources = append(sources, stream)
 
-			w.Write([]byte(stream))
-
-			break
 		}
 	}
+
+	b, _ = json.Marshal(sources)
+	w.Write(b)
 
 }

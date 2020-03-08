@@ -12,6 +12,7 @@
 		<v-btn class="md-icon-button md-theme-footer md-primary">
 			<v-icon>volume_up</v-icon>
 		</v-btn>
+		{{ currentStationInfo }}
 		<audio id="player" :src="''"></audio>
 	</div>
 </template>
@@ -38,7 +39,20 @@ export default {
 	created() {},
 
 	computed: {
-		...mapGetters(["getPlayerStatus", "getPlayerSource"]),
+		...mapGetters([
+			"getPlayerStatus",
+			"getPlayerSource",
+			"getCurrentStation",
+		]),
+
+		currentStationInfo() {
+			let c = this.getCurrentStation;
+			if (c === undefined || c.name === undefined) {
+				return "";
+			}
+
+			return `${c.name} (${c.genre}) ${c.lc} - ${c.ct}`;
+		},
 	},
 
 	methods: {
@@ -68,21 +82,28 @@ export default {
 
 	watch: {
 		getPlayerSource: val => {
-			var player = document.getElementById("player");
+			try {
+				var player = document.getElementById("player");
 
-			var url = new URL(val);
+				var url = new URL(val);
 
-			player.pause();
-			player.src = url.href;
-			player.load();
-			player.play().then(
-				() => {},
-				() => {
-					player.src = url.href + ";";
-					player.load();
-					player.play();
-				}
-			);
+				player.pause();
+
+				player.src = url.href;
+
+				player.load();
+
+				player.play().then(
+					() => {},
+					() => {
+						player.src = url.href + ";";
+						player.load();
+						player.play();
+					}
+				);
+			} catch (e) {
+				alert("cannot play..." + e);
+			}
 		},
 	},
 };
