@@ -56,3 +56,6 @@ created by net/http.(*Server).Serve
 2020-03-08T11:05:42.036Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
 2020-03-08T11:45:51.979Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
 2020-03-08T13:28:00.899Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2020-03-09T06:34:31.72Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2020-03-09T07:00:13.279Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]
+2020-03-09T07:07:12.339Z [INFO] starting subscriber service at address: [ 0.0.0.0:5511 ]

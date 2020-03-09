@@ -1,3 +1,4 @@
+import Vue from "vue";
 import axios from "axios";
 
 const state = {
@@ -20,15 +21,15 @@ const getters = {
 
 const mutations = {
 	setPlayerStatus: (state, payload) => {
-		state.playerStatus = payload;
+		Vue.set(state, "playerStatus", payload);
 	},
 
 	setPlayerSource: (state, payload) => {
-		state.source = payload;
+		Vue.set(state, "source", payload);
 	},
 
 	setCurrentStation: (state, payload) => {
-		state.currentStation = payload;
+		Vue.set(state, "currentStation", payload);
 	},
 };
 
@@ -51,6 +52,11 @@ const actions = {
 			dispatch("setCurrentStation", station);
 			dispatch("setPlayerSource", res.data[0]);
 		});
+	},
+
+	tuneFavourite: ({ dispatch }, station) => {
+		dispatch("setCurrentStation", station);
+		dispatch("setPlayerSource", station.url);
 	},
 };
 

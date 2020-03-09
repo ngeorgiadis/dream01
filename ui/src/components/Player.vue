@@ -59,7 +59,14 @@ export default {
 		...mapActions(["setPlayerStatus"]),
 
 		tooglePlay() {
-			var player = document.getElementById("player");
+			if (this.getPlayerStatus == "paused") {
+				this.play();
+			} else {
+				this.pause();
+			}
+		},
+
+		/*var player = document.getElementById("player");
 
 			if (this.getPlayerStatus == "paused") {
 				//play
@@ -76,34 +83,87 @@ export default {
 				this.playerIcon = "play_arrow";
 				player.pause();
 				this.setPlayerStatus("paused");
+			} */
+
+		play(source) {
+			try {
+				let player = document.getElementById("player");
+				let url = "";
+				if (!source) {
+					url = new URL(source);
+				} else {
+					url = new URL(this.getPlayerSource);
+				}
+
+				player.pause();
+				player.src = url.href;
+				player.load();
+
+				player.play().then(
+					() => {
+						this.setPlayerStatus("playing");
+					},
+					() => {
+						player.src = url.href + ";";
+						player.load();
+						player.play().then(
+							() => {
+								this.setPlayerStatus("playing");
+							},
+							() => {
+								this.setPlayerStatus("paused");
+							}
+						);
+					}
+				);
+				this.playerIcon = "pause";
+			} catch (e) {
+				alert("cannot play..." + e);
+				this.setPlayerStatus("paused");
+				this.playerIcon = "play_arrow";
 			}
+		},
+
+		pause() {
+			let player = document.getElementById("player");
+			this.playerIcon = "play_arrow";
+			player.pause();
+			this.setPlayerStatus("paused");
 		},
 	},
 
 	watch: {
-		getPlayerSource: val => {
-			try {
-				var player = document.getElementById("player");
+		getPlayerSource: function(val) {
+			this.play(val);
+			// try {
+			// 	var player = document.getElementById("player");
+			// 	var url = new URL(val);
 
-				var url = new URL(val);
+			// 	player.pause();
+			// 	player.src = url.href;
+			// 	player.load();
 
-				player.pause();
-
-				player.src = url.href;
-
-				player.load();
-
-				player.play().then(
-					() => {},
-					() => {
-						player.src = url.href + ";";
-						player.load();
-						player.play();
-					}
-				);
-			} catch (e) {
-				alert("cannot play..." + e);
-			}
+			// 	player.play().then(
+			// 		() => {
+			// 			this.setPlayerStatus("playing");
+			// 		},
+			// 		() => {
+			// 			player.src = url.href + ";";
+			// 			player.load();
+			// 			player.play().then(
+			// 				() => {
+			// 					this.setPlayerStatus("playing");
+			// 				},
+			// 				() => {
+			// 					this.setPlayerStatus("paused");
+			// 				}
+			// 			);
+			// 		}
+			// 	);
+			// } catch (e) {
+			// 	alert("cannot play..." + e);
+			// 	this.setPlayerStatus("paused");
+			// }
 		},
 	},
 };

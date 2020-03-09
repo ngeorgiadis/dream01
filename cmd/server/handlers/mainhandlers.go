@@ -14,8 +14,10 @@ import (
 
 // RadioStation ...
 type RadioStation struct {
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 	URL  string `json:"url"`
+	Logo string `json:"logo"`
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -40,8 +42,10 @@ func getFavourites(w http.ResponseWriter, r *http.Request) {
 
 	sl := []RadioStation{
 		RadioStation{
+			ID:   1,
 			Name: "dream01",
-			URL:  "http://dream01.gr:8000/",
+			URL:  "http://dream01.gr:8000/stream",
+			Logo: "",
 		},
 	}
 
