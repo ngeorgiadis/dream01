@@ -28,3 +28,4 @@ sdata/
 settings.cfg
 cmd/server/__debug_bin
 cmd/server/logs/application.log
+cmd/server/logs/application.log
